@@ -60,6 +60,7 @@ public class FadingActionBarHelper {
     private boolean mFirstGlobalLayoutPerformed;
     private View mMarginView;
     private View mListViewBackgroundView;
+    private View.OnClickListener mOnHeaderClickListener = null;
 
 
     public FadingActionBarHelper actionBarBackground(int drawableResId) {
@@ -99,6 +100,11 @@ public class FadingActionBarHelper {
 
     public FadingActionBarHelper parallax(boolean value) {
         mUseParallax = value;
+        return this;
+    }
+
+    public FadingActionBarHelper onHeaderClickListener(View.OnClickListener listener) {
+        mOnHeaderClickListener = listener;
         return this;
     }
 
@@ -234,6 +240,10 @@ public class FadingActionBarHelper {
 
         mMarginView = new View(listView.getContext());
         mMarginView.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.MATCH_PARENT, 0));
+        if (mOnHeaderClickListener != null) {
+          mMarginView.setClickable(true);
+          mMarginView.setOnClickListener(mOnHeaderClickListener);
+        }
         listView.addHeaderView(mMarginView, null, false);
 
         // Make the background as high as the screen so that it fills regardless of the amount of scroll. 
