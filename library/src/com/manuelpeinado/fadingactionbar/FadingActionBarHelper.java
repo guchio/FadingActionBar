@@ -256,7 +256,7 @@ public class FadingActionBarHelper {
         return mContentContainer;
     }
 
-    private OnScrollListener mOnScrollListener = new OnScrollListener() {
+    public OnScrollListener mOnScrollListener = new OnScrollListener() {
         @Override
         public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
             View topChild = view.getChildAt(0);
