@@ -298,6 +298,7 @@ public class FadingActionBarHelper {
         int dampedScroll = (int) (scrollPosition * damping);
         int offset = mLastDampedScroll - dampedScroll;
         mHeaderContainer.offsetTopAndBottom(offset);
+        ((FrameLayoutExtend)mHeaderContainer).setLayoutOffset(-dampedScroll);
 
         if (mListViewBackgroundView != null) {
             offset = mLastScrollPosition - scrollPosition;
