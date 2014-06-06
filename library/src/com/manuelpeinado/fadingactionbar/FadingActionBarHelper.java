@@ -61,6 +61,7 @@ public class FadingActionBarHelper {
     private View mMarginView;
     private View mListViewBackgroundView;
     private View.OnClickListener mOnHeaderClickListener = null;
+    private int mActionBarAlpha = 0;
 
 
     public FadingActionBarHelper actionBarBackground(int drawableResId) {
@@ -165,6 +166,10 @@ public class FadingActionBarHelper {
             mActionBarBackgroundDrawable.setCallback(mDrawableCallback);
         }
         mActionBarBackgroundDrawable.setAlpha(0);
+    }
+
+    public int getActionBarAlpha() {
+      return this.mActionBarAlpha;
     }
 
     protected ActionBar getActionBar(Activity activity) {
@@ -288,6 +293,7 @@ public class FadingActionBarHelper {
         int headerHeight = currentHeaderHeight - mActionBar.getHeight();
         float ratio = (float) Math.min(Math.max(scrollPosition, 0), headerHeight) / headerHeight;
         int newAlpha = (int) (ratio * 255);
+        this.mActionBarAlpha = newAlpha;
         mActionBarBackgroundDrawable.setAlpha(newAlpha);
 
         addParallaxEffect(scrollPosition);
